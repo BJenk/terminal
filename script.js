@@ -7,6 +7,9 @@ function navigateUpAndDown(navItem) {
         
         x = 0; 
         getAllNavItems[x].focus();
+        
+        var navPusher = document.getElementById("main-nav");
+        y = -25
 
         navItem[i].onkeydown = function(e){
             switch(e.keyCode){
@@ -17,10 +20,14 @@ function navigateUpAndDown(navItem) {
                     if (x < navItem.length-1)
                     {
                         x = x + 1
+                        navPusher.style.marginTop = (y + "px");
+                        y = y-25
                         getAllNavItems[x].focus();
                     }
                     else if (x = navItem.length) {
-                        x = 0; 
+                        x = 0;
+                        y = 0
+                        navPusher.style.marginTop = (y + "px");
                         getAllNavItems[x].focus();
                     }
                     break;
@@ -29,10 +36,15 @@ function navigateUpAndDown(navItem) {
                     console.log("up "+ x);
                     if (x >= 1) { 
                         x = x - 1
+                        y = (y>149) ? 150 : y+25
+                        navPusher.style.marginTop = (y + "px");
+                        
                         getAllNavItems[x].focus();
                     }
                     else if( x == 0){
                         x = (navItem.length-1)
+                        y = 0
+                        navPusher.style.marginTop = (y + "px");
                         getAllNavItems[x].focus();
                     }
                     break;
